@@ -13,14 +13,18 @@ ROUTE.get("/", (req, res) => {
                 <li>
                     <form action="/eliminar/${usuario.nombre}" method="POST">
                         <input type="hidden" name="_method" value="DELETE"> <button type="submit">Eliminar</button>
-                        ID: ${usuario.id} | Nombre: ${usuario.nombre}
+                        ID: ${usuario.id} | Nombre: ${usuario.nombre} | Edad: ${usuario.edad} | Lugar: ${usuario.lugarProcedencia}
                     </form>
                 </li>
             `).join("")}
         </ul>
         <form action="/usuarios" method="POST">
             <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" name="nombre" required>
+            <input type="text" id="nombre" name="nombre" required><br>
+            <label for="edad">Edad</label>
+            <input type="text" id="edad" name="edad" required><br>
+            <label for="lugar">Lugar</label>
+            <input type="text" id="lugar" name="lugar" required><br>
             <button type="submit">Agregar usuario</button>
             <a href="/usuarios">Usuarios</a>
         </form>
@@ -37,6 +41,8 @@ ROUTE.post("/usuarios", (req, res) => {
 	const NUEVO_USUARIO = {
 		id: USUARIOS.length + 1,
 		nombre: req.body.nombre,
+        edad: req.body.edad,
+        lugarProcedencia: req.body.edad
 	};
     USUARIOS.push(NUEVO_USUARIO);
 	res.redirect("/");

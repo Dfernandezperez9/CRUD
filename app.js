@@ -4,7 +4,7 @@ const ROUTE = require("./ruta");
 const DATA = require("./data");
 const PORT = 3000;
 
-
+APP.use(EXPRESS.json());
 APP.use(EXPRESS.urlencoded({ extended: true }));
 
 APP.use("/", ROUTE);
