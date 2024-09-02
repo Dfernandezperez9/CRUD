@@ -24,7 +24,7 @@ ROUTE.get("/", (req, res) => {
             <label for="edad">Edad</label>
             <input type="text" id="edad" name="edad" required><br>
             <label for="lugar">Lugar</label>
-            <input type="text" id="lugar" name="lugar" required><br>
+            <input type="text" id="lugarProcedencia" name="lugarProcedencia" required><br>
             <button type="submit">Agregar usuario</button>
             <a href="/usuarios">Usuarios</a>
         </form>
