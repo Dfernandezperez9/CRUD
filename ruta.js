@@ -42,7 +42,7 @@ ROUTE.post("/usuarios", (req, res) => {
 		id: USUARIOS.length + 1,
 		nombre: req.body.nombre,
         edad: req.body.edad,
-        lugarProcedencia: req.body.edad
+        lugarProcedencia: req.body.lugarProcedencia
 	};
     USUARIOS.push(NUEVO_USUARIO);
 	res.redirect("/");
