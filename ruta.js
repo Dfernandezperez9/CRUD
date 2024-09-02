@@ -2,7 +2,7 @@ const express = require("express");
 const APP = express();
 const ROUTE = express.Router();
 const DATA = require("./data");
-const USUARIOS = DATA.usuarios;
+let USUARIOS = DATA.usuarios;
 
 
 ROUTE.get("/", (req, res) => {
@@ -30,6 +30,27 @@ ROUTE.get("/", (req, res) => {
         </form>
     `);
 });
+
+
+ROUTE.post("/eliminar/:nombre", (req, res) => {
+    const FS = require('fs');
+    const NOMBRE = req.params.nombre;
+    const _METHOD = req.body._method;
+    if (_METHOD === 'DELETE') {
+      const INDEX = USUARIOS.findIndex((usuario) => usuario.nombre === NOMBRE);
+      if (INDEX !== -1) {
+        USUARIOS.splice(INDEX, 1);
+        const DATA = JSON.stringify(USUARIOS);
+        FS.writeFileSync('data.json', DATA);
+         USUARIOS = require('./data').usuarios;
+        res.redirect("/");
+      } else {
+        res.status(404).send("Usuario no encontrado");
+      }
+    } else {
+      res.status(405).send('Método no permitido');
+    }
+  });
 
 
 
